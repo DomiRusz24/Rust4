@@ -9,11 +9,11 @@ use connect4::board_io::BoardOutput;
 
 fn main() {
 
-    let console: ConsoleInput = ConsoleInput{};
+    let input: ConsoleInput = ConsoleInput{};
 
-    let mut config: GameBoardConfiguration = console.get_configuration();
+    let mut config: GameBoardConfiguration = input.get_configuration();
 
-    config.output = Some(&console);
+    config.output = Some(&input);
 
     let mut game_board: GameBoard = GameBoard::new(config);
 
