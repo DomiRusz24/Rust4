@@ -1,15 +1,14 @@
-use std::fmt::{Display};
 use crate::connect4::board_io::{BoardInput, BoardOutput};
 use crate::util::{get_input, get_input_with_message, split};
+use crate::GameBoardConfiguration;
+use std::fmt::Display;
 use std::num::ParseIntError;
 use std::str::FromStr;
-use crate::GameBoardConfiguration;
 
-pub struct ConsoleInput{}
+pub struct ConsoleInput {}
 
 impl<'a> BoardOutput<'a> for ConsoleInput {
     fn display_board(&self, board: &[Vec<Option<u8>>], width: usize, height: usize) {
-
         split();
 
         let mut x: usize;
@@ -18,20 +17,18 @@ impl<'a> BoardOutput<'a> for ConsoleInput {
         while y < height {
             x = 0;
             while x < width {
-
                 if board[x][y] == None {
                     print!("[ ]");
                 } else {
                     print!("[{}]", board[x][y].unwrap());
                 }
 
-                x+= 1;
+                x += 1;
             }
             println!();
 
-            y+= 1;
+            y += 1;
         }
-
     }
 
     fn waiting_for_input(&self, id: u8, input: &mut dyn BoardInput) {
@@ -48,7 +45,6 @@ impl<'a> BoardOutput<'a> for ConsoleInput {
             self.waiting_for_input(id, input);
         }
     }
-
 
     fn cant_place_tile(&self, id: u8, _x: i16) {
         println!("Player {}, can't place tile here!", id);
@@ -73,5 +69,7 @@ impl<'a> BoardOutput<'a> for ConsoleInput {
 }
 
 fn get_config_value<T: Display + FromStr>(name: &str, default: T) -> T {
-    get_input_with_message(format!("Enter {} (Press enter for {}):", name, default).as_str()).parse().unwrap_or(default)
+    get_input_with_message(format!("Enter {} (Press enter for {}):", name, default).as_str())
+        .parse()
+        .unwrap_or(default)
 }

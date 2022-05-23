@@ -28,37 +28,39 @@ pub fn get_input() -> String {
     let mut option: String = String::new();
 
     let _ = stdout().flush();
-    stdin().read_line(&mut option).expect("Did not enter a correct string.");
-    if let Some('\n')=option.chars().next_back() {
+    stdin()
+        .read_line(&mut option)
+        .expect("Did not enter a correct string.");
+    if let Some('\n') = option.chars().next_back() {
         option.pop();
     }
-    if let Some('\r')=option.chars().next_back() {
+    if let Some('\r') = option.chars().next_back() {
         option.pop();
     }
 
     option
 }
 
-pub fn get_input_with_message(str : &str) -> String {
-
+pub fn get_input_with_message(str: &str) -> String {
     print!("{}  ", str);
 
     let mut option: String = String::new();
 
     let _ = stdout().flush();
-    stdin().read_line(&mut option).expect("Did not enter a correct string.");
-    if let Some('\n')=option.chars().next_back() {
+    stdin()
+        .read_line(&mut option)
+        .expect("Did not enter a correct string.");
+    if let Some('\n') = option.chars().next_back() {
         option.pop();
     }
-    if let Some('\r')=option.chars().next_back() {
+    if let Some('\r') = option.chars().next_back() {
         option.pop();
     }
-    
+
     println!();
 
     option
 }
-
 
 pub fn split() {
     println!("\n\n");
